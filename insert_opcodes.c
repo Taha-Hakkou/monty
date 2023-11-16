@@ -13,13 +13,15 @@ char *num = NULL;
 void push(stack_t **stack, unsigned int line_number)
 {
 	stack_t *node, *tmp;
+	int i;
 
 	node = malloc(sizeof(stack_t));
 	if (node)
 	{
-		node->n = atoi(num); /* atoi - no to deal w/ overflows */
-		if (!(node->n) && *num != '0'/* not int or no arg */)
-			error_handler("L%d: usage: push integer\n", line_number);
+		for (i = 0; num[i]; i++)
+			if (!(num[i] >= '0' && num[i] <= '9') && !(i == 0 && num[i] == '-'))
+				error_handler("L%d: usage: push integer\n", line_number);
+		node->n = atoi(num);
 		if (*stack)
 		{
 			if (is_stack)
