@@ -18,6 +18,8 @@ void push(stack_t **stack, unsigned int line_number)
 	node = malloc(sizeof(stack_t));
 	if (node)
 	{
+		if (!num)
+			error_handler("L%d: usage: push integer\n", line_number);
 		for (i = 0; num[i]; i++)
 			if (!(num[i] >= '0' && num[i] <= '9') && !(i == 0 && num[i] == '-'))
 				error_handler("L%d: usage: push integer\n", line_number);
