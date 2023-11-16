@@ -8,6 +8,7 @@
 #include <fcntl.h>
 #include <stdio.h>
 #include <string.h>
+#include <limits.h>
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -50,6 +51,7 @@ void free_stack(stack_t **stack);
 void (*opcode_handler(const char *opcode))(stack_t **, unsigned int);
 void error_handler(char *, unsigned int);
 
+int is_number(char *);
 /*----------------------- Opcodes -------------------------*/
 void pall(stack_t **, unsigned int);
 void pint(stack_t **, unsigned int);

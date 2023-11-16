@@ -91,7 +91,7 @@ void stack(stack_t **stack, unsigned int line_number)
 }
 
 /**
-/bin/bash: line 1: q: command not found
+ * queue - sets the format of the data to a queue (FIFO).
  *		The top of the stack becomes the front of the queue
  * @stack: opcodes stack
  * @line_number: opcodes line number
