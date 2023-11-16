@@ -87,3 +87,27 @@ void nop(stack_t **stack, unsigned int line_number)
 	(void)stack;
 	(void)line_number;
 }
+
+/**
+ * free_stack - frees a stack
+ * @stack: stack to free
+ * Return: Nothing
+ */
+void free_stack(stack_t **stack)
+{
+	stack_t *tmp;
+
+	if (*stack)
+	{
+		tmp = *stack;
+		while (tmp->prev)
+			tmp = tmp->prev;
+		while (tmp->next)
+		{
+			tmp = tmp->next;
+			free(tmp->prev);
+		}
+		free(tmp);
+		*stack = NULL;
+	}
+}

@@ -34,7 +34,9 @@ int main(int argc, char **argv)
 				run(&stack, instruction, l);
 				getline(&instruction, &n, stream);
 			}
-			return (0);
+			fclose(stream);
+			free_stack(&stack);
+			return (EXIT_SUCCESS);
 		}
 	}
 	else

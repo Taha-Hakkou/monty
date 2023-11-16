@@ -45,6 +45,7 @@ extern char *num;
 
 
 void run(stack_t **, char *, unsigned int);
+void free_stack(stack_t **stack);
 
 void (*opcode_handler(const char *opcode))(stack_t **, unsigned int);
 void error_handler(char *, unsigned int);
