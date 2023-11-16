@@ -46,7 +46,10 @@ void pint(stack_t **stack, unsigned int line_number)
 		printf("%d\n", tmp->n);
 	}
 	else
-		error_handler("L%d: can't pint, stack empty\n", line_number);
+	{
+		fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
+		exit(EXIT_FAILURE);
+	}
 }
 
 /**
@@ -69,10 +72,16 @@ void pchar(stack_t **stack, unsigned int line_number)
 		if (tmp->n >= 0 && tmp->n < 128)
 			printf("%c\n", tmp->n);
 		else
-			error_handler("L%d: can't pchar, value out of range\n", line_number);
+		{
+			fprintf(stderr, "L%d: can't pchar, value out of range\n", line_number);
+			exit(EXIT_FAILURE);
+		}
 	}
 	else
-		error_handler("L%d: can't pchar, stack empty\n", line_number);
+	{
+		fprintf(stderr, "L%d: can't pchar, stack empty\n", line_number);
+		exit(EXIT_FAILURE);
+	}
 }
 
 /**

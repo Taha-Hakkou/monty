@@ -19,10 +19,16 @@ void push(stack_t **stack, unsigned int line_number)
 	if (node)
 	{
 		if (!num)
-			error_handler("L%d: usage: push integer\n", line_number);
+		{
+			fprintf(stderr, "L%d: usage: push integer\n", line_number);
+			exit(EXIT_FAILURE);
+		}
 		for (i = 0; num[i]; i++)
-			if (!(num[i] >= '0' && num[i] <= '9') /*&& !(i == 0 && num[i] == '-')*/)
-				error_handler("L%d: usage: push integer\n", line_number);
+			if (!(num[i] >= '0' && num[i] <= '9') && !(i == 0 && num[i] == '-'))
+			{
+				fprintf(stderr, "L%d: usage: push integer\n", line_number);
+				exit(EXIT_FAILURE);
+			}
 		node->n = atoi(num);
 		if (*stack)
 		{
@@ -51,7 +57,10 @@ void push(stack_t **stack, unsigned int line_number)
 		}
 	}
 	else
-		error_handler("Error: malloc failed\n", line_number);
+	{
+		fprintf(stderr, "Error: malloc failed\n");
+		exit(EXIT_FAILURE);
+	}
 }
 
 /**
@@ -75,7 +84,10 @@ void pop(stack_t **stack, unsigned int line_number)
 		free(tmp);
 	}
 	else
-		error_handler("L%d: can't pop an empty stack\n", line_number);
+	{
+		fprintf(stderr, "L%d: can't pop an empty stack\n", line_number);
+		exit(EXIT_FAILURE);
+	}
 }
 
 /**
