@@ -21,7 +21,7 @@ void push(stack_t **stack, unsigned int line_number)
 		if (!num)
 			error_handler("L%d: usage: push integer\n", line_number);
 		for (i = 0; num[i]; i++)
-			if (!(num[i] >= '0' && num[i] <= '9') && !(i == 0 && num[i] == '-'))
+			if (!(num[i] >= '0' && num[i] <= '9') /*&& !(i == 0 && num[i] == '-')*/)
 				error_handler("L%d: usage: push integer\n", line_number);
 		node->n = atoi(num);
 		if (*stack)
