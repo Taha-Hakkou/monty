@@ -4,47 +4,28 @@ int is_stack = 1;
 char *num = NULL;
 
 /**
- * is_number - checks if a string is a number
- * @n: stringified number
- * Return: 1 if is number, 0 otherwise
+ * stack_init - initializes a stack
+ * @stack: stack to be initialized
+ * Return: Nothing
  */
-int is_number(char *n)
+void stack_init(stack_t **stack)
 {
-	int i = 0;
-	char *m;
+	stack_t *init;
 
-	if (n && *n)
+	init = malloc(sizeof(stack_t));
+	if (init)
 	{
-		m = n;
-		if (n[i] == '+' || n[i] == '-')
-			m = n + 1;
-		for (; m[i]; i++)
-			if (m[i] < '0' || m[i] > '9')
-				return (0);
-		/*
-		 * if (n[0] == '-')
-		*{min = itoa(INT_MIN);
-		*	if (strlen(min) < strlen(n))
-		*		return (0);
-		*	else if (strlen(min) > strlen(n))
-		*		return (1);
-		*	for (i = 0; min[i]; i++)
-		*		if (min[i] < n[i])
-		*			return (0);
-		*}else
-		*{
-		*	max = itoa(INT_MAX);
-		*	if (strlen(max) < strlen(m))
-		*		return (0);
-		*	else if (strlen(max) > strlen(m))
-		*		return (1);
-		*	for (i = 0; max[i]; i++)
-		*		if (max[i] < m[i])
-		*			return (0);}
-		*/
-		return (1);
+		free_stack(stack);
+		init->n = 0;
+		init->prev = NULL;
+		init->next = NULL;
+		*stack = init;
 	}
-	return (0);
+	else
+	{
+		fprintf(stderr, "Error: malloc failed\n");
+		exit(EXIT_FAILURE);
+	}
 }
 
 /**
@@ -145,7 +126,7 @@ void free_stack(stack_t **stack)
 {
 	stack_t *tmp;
 
-	if (*stack)
+	if (stack && *stack)
 	{
 		tmp = *stack;
 		while (tmp->prev)

@@ -44,9 +44,9 @@ typedef struct instruction_s
 extern int is_stack;
 extern char *num;
 
-
+void stack_init(stack_t **);
 void run(stack_t **, char *, unsigned int);
-void free_stack(stack_t **stack);
+void free_stack(stack_t **);
 
 void (*opcode_handler(const char *opcode))(stack_t **, unsigned int);
 void error_handler(char *, unsigned int);

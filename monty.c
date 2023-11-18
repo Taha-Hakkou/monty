@@ -8,7 +8,7 @@
  */
 int main(int argc, char **argv)
 {
-	stack_t *stack;/* try to use ** */
+	stack_t *stack = NULL;/* try to use ** */
 	FILE *stream;
 	size_t n;
 	char *instruction;
@@ -23,7 +23,7 @@ int main(int argc, char **argv)
 		}
 		else
 		{
-			stack = NULL;
+			stack_init(&stack);
 			stream = fopen(argv[1], "r");
 			getline(&instruction, &n, stream);
 			for (l = 1; !feof(stream); l++)
