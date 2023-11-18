@@ -15,6 +15,7 @@ int is_number(char *n)
 
 	if (n && *n)
 	{
+		m = n;
 		if (n[i] == '+' || n[i] == '-')
 			m = n + 1;
 		for (; m[i]; i++)
