@@ -23,7 +23,7 @@ int main(int argc, char **argv)
 		}
 		else
 		{
-			stack_init(&stack);
+			/*stack_init(&stack);*/
 			stream = fopen(argv[1], "r");
 			getline(&instruction, &n, stream);
 			for (l = 1; !feof(stream); l++)
@@ -32,6 +32,7 @@ int main(int argc, char **argv)
 				getline(&instruction, &n, stream);
 			}
 			fclose(stream);
+			printf("0\n"); /* instead of stack initialization */
 			free_stack(&stack);
 			return (EXIT_SUCCESS);
 		}
@@ -55,7 +56,7 @@ void run(stack_t **stack, char *instruction, unsigned int l)
 	char *opcode;
 	void (*f)(stack_t **, unsigned int);
 
-	opcode = strtok(instruction, " \n");
+	opcode = strtok(instruction, " \n\t");
 	if (opcode)
 	{
 		/* Comment handler */
@@ -65,7 +66,7 @@ void run(stack_t **stack, char *instruction, unsigned int l)
 		/* get opcode function */
 		f = opcode_handler(opcode);
 		/* get data for push opcode */
-		num = strtok(NULL, " \n");
+		num = strtok(NULL, " \n\t");
 		/* call opcode function */
 		if (f)
 			f(stack, l);
